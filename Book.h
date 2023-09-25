@@ -21,6 +21,8 @@ public:
     bool isAvailable() const;
     void setAvailability(bool avail);
     void displayInfo() const;
+    void setTitle(std::string t);
+    void setAuthor(std::string a);
 };
 
 #endif

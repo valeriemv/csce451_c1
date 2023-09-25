@@ -12,12 +12,17 @@ void Library::deleteBook(int id) {
     }
 }
 
-void Library::updateBook(const Book& book) {
-    auto it = inventory.find(book.getID());
+void Library::updateBook(const int ID, string title, string author, bool availability) {
+    auto it = inventory.find(ID);
     if (it != inventory.end()) {
-        it->second = book;
+        if (title != "")
+            it->second.setTitle(title);
+        if (author != "")
+            it->second.setAuthor(author);
+
+        it->second.setAvailability(availability);
     } else {
-        cout << "Book with ID " << book.getID() << " not found." << endl;
+        cout << "Book with ID " << ID << " not found." << endl;
     }
 }
 
@@ -52,6 +57,7 @@ void Library::sortBooksByTitle() {
     }
 }
 
+// Function to sort books alphabetically by author
 void Library::sortBooksByAuthor() {
     // Implement sorting logic here (e.g., using sort)
     map<string, vector<Book>> authorMap;

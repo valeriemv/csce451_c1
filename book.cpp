@@ -56,3 +56,10 @@ void Book::displayInfo() const {
     cout << "ID: " << ID << ", Title: " << title << ", Author: " << author
               << ", Availability: " << (availability ? "Available" : "Not Available") << endl;
 }
+
+void Book::setTitle(string t) {
+    title = t;
+}
+void Book::setAuthor(string a) {
+    author = a;
+}
