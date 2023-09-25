@@ -15,6 +15,8 @@ void Library::updateBook(const Book& book) {
     auto it = inventory.find(book.getID());
     if (it != inventory.end()) {
         it->second = book;
+    } else {
+        std::cout << "Book with ID " << book.getID() << " not found." << std::endl;
     }
 }
 

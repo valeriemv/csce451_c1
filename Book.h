@@ -12,7 +12,9 @@ private:
     bool availability;
 
 public:
-    Book(int id, const std::string& t, const std::string& a);
+    Book(const std::string& t, const std::string& a);
+    Book(const std::string& t, const std::string& a, bool availability);
+    Book();
     int getID() const;
     const std::string& getTitle() const;
     const std::string& getAuthor() const;
