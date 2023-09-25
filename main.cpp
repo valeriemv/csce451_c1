@@ -4,6 +4,8 @@
 using namespace std;
 
 void populateLibrary(Library& library);
+void admin(Library& library);
+void user(Library& library);
 
 int main() {
     //Admin password protection
@@ -31,8 +33,12 @@ int main() {
     }
     
     Library library;
-
     populateLibrary(library);
+
+    if (adminFeatures)
+        admin(library);
+    else
+        user(library);
 
     cout << "Displaying all books:" << endl;
     library.displayAllBooks();
@@ -83,7 +89,7 @@ void populateLibrary(Library& library) {
         "John Steinbeck", "Leo Tolstoy", "Joseph Conrad", "Nathaniel Hawthorne", "Miguel de Cervantes", "Oscar Wilde",
         "William Faulkner", "Alexandre Dumas", "James Joyce", "Charles Dickens", "Victor Hugo", "Margaret Mitchell",
         "Fyodor Dostoevsky", "Charles Dickens", "Charlotte Brontë", "Louisa May Alcott", "Bram Stoker", "Charles Dickens",
-        "Charlotte Brontë", "Charlotte Brontë", "Alexandre Dumas", "Robert Louis Stevenson", "Arthur Conan Doyle",
+        "Charlotte Brontë", "Charlotte Bronte", "Alexandre Dumas", "Robert Louis Stevenson", "Arthur Conan Doyle",
         "Henry David Thoreau", "H.G. Wells", "H.G. Wells", "Charles Dickens", "Rudyard Kipling", "J.M. Barrie",
         "Daniel Defoe", "Arthur Conan Doyle"
     };
@@ -92,4 +98,62 @@ void populateLibrary(Library& library) {
         Book newBook(titles[i], authors[i]);
         library.addBook(newBook);
     }
+}
+
+void admin(Library& library) {
+    
+}
+
+void user(Library& library) {
+    int option;
+    do {
+        cout << "Menu:" << endl;
+        cout << "1. Display all books" << endl;
+        cout << "2. Display books by title" << endl;
+        cout << "3. Display books by author" << endl;
+        cout << "4. Add books to cart " << endl;
+        cout << "5. Checkout" << endl;
+        cout << "0. Quit" << endl;
+
+        cout << "Enter option: ";
+        cin >> option;
+
+        switch (option) {
+            case 1:
+                library.displayAllBooks();
+                break;
+            case 2:
+                library.sortBooksByTitle(); 
+                library.displayAllBooks();
+                break;
+            case 3:
+                library.sortBooksByAuthor();
+                library.displayAllBooks();
+                break;
+            case 4:
+                int id;
+                cout << "Enter book ID to add to cart: ";
+                cin >> id;
+                if (library.isBookAvailable(id)) {
+                    // Add book to cart logic here
+                    
+                    cout << "Book added to cart!" << endl;
+                } else {
+                    cout << "Book with ID " << id << " is not available." << endl;
+                }
+
+                break;
+            case 5:
+                // checkout
+
+                
+                break;
+            case 0:
+                cout << "Goodbye!" << endl;
+                break;
+            default:
+                cout << "Invalid option. Please try again." << endl;
+        }
+
+    } while (option != 0);
 }
