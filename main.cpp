@@ -1,39 +1,26 @@
-#include <iostream>
-#include <unordered_map>
-#include <string>
-#include "library.cpp"
-// #include "book.cpp"
-
-
-using namespace std;
-
-const string password = "password";
+#include "Library.h"
 
 int main() {
     Library library;
 
-    Book book1("Book 1", "Author 1");
-    Book book2("Book 2", "Author 2");
-    Book book3("Book 3", "Author 3");
+    Book book1(1, "Book A", "Author X");
+    Book book2(2, "Book B", "Author Y");
 
     library.addBook(book1);
     library.addBook(book2);
-    library.addBook(book3);
 
-    library.displayBooks();
+    std::cout << "Displaying all books:" << std::endl;
+    library.displayAllBooks();
 
-    cout << "Checking availability of Book with ID 1234: " << (library.checkAvailability("1234") ? "Yes" : "No") << endl;
+    std::cout << "\nSearching for books with 'Book':" << std::endl;
+    library.searchBooks("Book");
 
-    library.deleteBook("2345");
+    std::cout << "\nUpdating book availability:" << std::endl;
+    library.updateBook(Book(1, "Book A", "Author X"));
+    library.updateBook(Book(2, "Book B", "Author Y", false));
 
-    cout << "After deleting Book with ID 2345:" << endl;
-    library.displayBooks();
-
-    Book updatedBook("Updated Book 1", "Updated Author 1");
-    library.updateBook("1234", updatedBook);
-
-    cout << "After updating Book with ID 1234:" << endl;
-    library.displayBooks();
+    std::cout << "\nChecking if Book 1 is available:" << std::endl;
+    std::cout << (library.isBookAvailable(1) ? "Available" : "Not Available") << std::endl;
 
     return 0;
 }
