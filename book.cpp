@@ -1,21 +1,35 @@
 #include "Book.h"
+#include <chrono>
 using namespace std;
+
+namespace {
+    static int IDCounter = 1;
+}
 
 Book::Book(const string& t, const string& a)  
     : title(t), author(a), availability(true) {
-    srand(time(nullptr));  // Seed the random number generator with current time
-    ID = rand();
+    auto now = chrono::system_clock::now();
+    auto duration = now.time_since_epoch();
+    auto millis = chrono::duration_cast<chrono::milliseconds>(duration).count();
+    
+    ID = IDCounter++ * 1000 + millis % 1000;
 }
 
 Book::Book(const string& t, const string& a, bool availability)
     : title(t), author(a), availability(availability) {
-    srand(time(nullptr));  // Seed the random number generator with current time
-    ID = rand();
+    auto now = chrono::system_clock::now();
+    auto duration = now.time_since_epoch();
+    auto millis = chrono::duration_cast<chrono::milliseconds>(duration).count();
+    
+    ID = IDCounter++ * 1000 + millis % 1000;
 }
 
 Book::Book() : title("Unknown"), author("Unknown"), availability(true) {
-    srand(time(nullptr));  // Seed the random number generator with current time
-    ID = rand();
+    auto now = chrono::system_clock::now();
+    auto duration = now.time_since_epoch();
+    auto millis = chrono::duration_cast<chrono::milliseconds>(duration).count();
+    
+    ID = IDCounter++ * 1000 + millis % 1000;
 }
 
 int Book::getID() const {
