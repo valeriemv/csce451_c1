@@ -1,4 +1,5 @@
 #include "Library.h"
+using namespace std;
 
 void Library::addBook(const Book& book) {
     inventory[book.getID()] = book;
@@ -16,7 +17,7 @@ void Library::updateBook(const Book& book) {
     if (it != inventory.end()) {
         it->second = book;
     } else {
-        std::cout << "Book with ID " << book.getID() << " not found." << std::endl;
+        cout << "Book with ID " << book.getID() << " not found." << endl;
     }
 }
 
@@ -26,22 +27,22 @@ void Library::displayAllBooks() const {
     }
 }
 
-void Library::searchBooks(const std::string& keyword) const {
+void Library::searchBooks(const string& keyword) const {
     for (const auto& entry : inventory) {
         const Book& book = entry.second;
-        if (book.getTitle().find(keyword) != std::string::npos ||
-            book.getAuthor().find(keyword) != std::string::npos) {
+        if (book.getTitle().find(keyword) != string::npos ||
+            book.getAuthor().find(keyword) != string::npos) {
             book.displayInfo();
         }
     }
 }
 
 void Library::sortBooksByTitle() {
-    // Implement sorting logic here (e.g., using std::sort)
+    // Implement sorting logic here (e.g., using sort)
 }
 
 void Library::sortBooksByAuthor() {
-    // Implement sorting logic here (e.g., using std::sort)
+    // Implement sorting logic here (e.g., using sort)
 }
 
 bool Library::isBookAvailable(int id) const {

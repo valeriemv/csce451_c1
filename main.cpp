@@ -1,4 +1,5 @@
 #include "Library.h"
+using namespace std;
 
 int main() {
     Library library;
@@ -9,18 +10,22 @@ int main() {
     library.addBook(book1);
     library.addBook(book2);
 
-    std::cout << "Displaying all books:" << std::endl;
+    cout << "Displaying all books:" << endl;
     library.displayAllBooks();
+    cout << endl;
 
-    std::cout << "\nSearching for books with 'Book':" << std::endl;
+    cout << "Searching for books with 'Book':" << endl;
     library.searchBooks("Book");
+    cout << endl;
 
-    std::cout << "\nUpdating book availability:" << std::endl;
+    cout << "Updating book availability:" << endl;
     library.updateBook(Book("Book A", "Author X"));
     library.updateBook(Book("Book B", "Author Y", false));
+    cout << endl;
 
-    std::cout << "\nChecking if Book 1 is available:" << std::endl;
-    std::cout << (library.isBookAvailable(book1.getID()) ? "Available" : "Not Available") << std::endl;
+    cout << "Checking if Book 1 is available:" << endl;
+    cout << (library.isBookAvailable(book1.getID()) ? "Available" : "Not Available") << endl;
+    cout << endl;
 
     return 0;
 }
