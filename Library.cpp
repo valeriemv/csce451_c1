@@ -1,4 +1,6 @@
 #include "Library.h"
+#include <map>
+#include <vector>
 using namespace std;
 
 void Library::addBook(const Book& book) {
