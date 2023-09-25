@@ -39,10 +39,32 @@ void Library::searchBooks(const string& keyword) const {
 
 void Library::sortBooksByTitle() {
     // Implement sorting logic here (e.g., using sort)
+    map<string, vector<Book>> titleMap;
+    for (const auto& entry : inventory) {
+        const Book& book = entry.second;
+        titleMap[book.getTitle()].push_back(book);
+    }
+
+    for (const auto& entry : titleMap) {
+        for (const auto& book : entry.second) {
+            book.displayInfo();
+        }
+    }
 }
 
 void Library::sortBooksByAuthor() {
     // Implement sorting logic here (e.g., using sort)
+    map<string, vector<Book>> authorMap;
+    for (const auto& entry : inventory) {
+        const Book& book = entry.second;
+        authorMap[book.getAuthor()].push_back(book);
+    }
+
+    for (const auto& entry : authorMap) {
+        for (const auto& book : entry.second) {
+            book.displayInfo();
+        }
+    }
 }
 
 bool Library::isBookAvailable(int id) const {
