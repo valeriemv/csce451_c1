@@ -1,5 +1,6 @@
 #include "Book.h"
 #include <chrono>
+#include <vector>
 using namespace std;
 
 namespace {
